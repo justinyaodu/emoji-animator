@@ -33,6 +33,12 @@
             <input type="number" id="emoji-rotate" step="any" min="0" max="360" value="0">
           </div>
         </label>
+        <label>
+          Background color:
+          <div>
+            <input type="color" id="emoji-bg" value="#ffffff">
+          </div>
+        </label>
       </div>
     </form>
     <div id="all-emojis"></div>
@@ -92,6 +98,7 @@
 
       const emojiScale = document.getElementById("emoji-scale");
       const emojiRotate = document.getElementById("emoji-rotate");
+      const emojiBg = document.getElementById("emoji-bg");
 
       const generatedStyles = document.getElementById("generated-styles");
       const emojiTransformListener = () => {
@@ -110,11 +117,16 @@
             font-size: ${scale / 100}em;
             transform: rotate(${rotation}deg);
           }
+
+          .emoji-container {
+            background: ${emojiBg.value};
+          }
         `;
       }
 
       emojiScale.addEventListener("input", emojiTransformListener);
       emojiRotate.addEventListener("input", emojiTransformListener);
+      emojiBg.addEventListener("input", emojiTransformListener);
 
       emojiScale.dispatchEvent(new Event("input", { bubbles: true }));
     </script>
