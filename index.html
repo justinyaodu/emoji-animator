@@ -47,11 +47,17 @@
 
       const emojiTypes = ["party", "jam", "intensifies"];
       for (const emojiType of emojiTypes) {
-        const duration = getComputedStyle(document.documentElement).getPropertyValue(`--duration-${emojiType}`);
+        const styles = getComputedStyle(document.documentElement);
+        const durationStyle = styles.getPropertyValue(`--duration-${emojiType}`);
+        const directionStyle = styles.getPropertyValue(`--direction-${emojiType}`);
+
+        const duration = parseFloat(durationStyle.slice(0, -1), 10) * (
+          directionStyle === "alternate" ? 2 : 1
+        );
 
         const container = document.createElement("div");
         container.innerHTML = `
-          <p><a id="${emojiType}" href="#${emojiType}">${emojiType}</a> (${duration})</p>
+          <p><a id="${emojiType}" href="#${emojiType}">${emojiType}</a> (${duration} sec loop)</p>
           <div class="emoji-container">
             <div class="${emojiType}">
               <div class="emoji"></div>
