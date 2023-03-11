@@ -1,7 +1,7 @@
 #!/bin/bash
 
 main() {
-	if (( $# <= 3 )); then
+	if (( $# < 3 )); then
 		>&2 echo "usage: $0 <infile> <seconds> <outfile> [size] [fps]"
 		exit 1
 	fi

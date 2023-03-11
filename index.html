@@ -45,8 +45,13 @@
     <script>
       const allEmojis = document.getElementById("all-emojis");
 
-      const emojiTypes = ["party", "jam", "intensifies"];
-      for (const emojiType of emojiTypes) {
+      const emojiTypes = {
+        party: 1,
+        jam: 1,
+        intensifies: 1,
+        conga: 4,
+      };
+      for (const [emojiType, count] of Object.entries(emojiTypes)) {
         const styles = getComputedStyle(document.documentElement);
         const durationStyle = styles.getPropertyValue(`--duration-${emojiType}`);
         const directionStyle = styles.getPropertyValue(`--direction-${emojiType}`);
@@ -59,9 +64,15 @@
         container.innerHTML = `
           <p><a id="${emojiType}" href="#${emojiType}">${emojiType}</a> (${duration} sec loop)</p>
           <div class="emoji-container">
-            <div class="${emojiType}">
-              <div class="emoji"></div>
-            </div>
+            ${
+              new Array(count).fill(null).map((_, i) =>
+                `
+                <div class="${emojiType}${i + 1}">
+                  <div class="emoji"></div>
+                </div>
+                `
+              ).join("")
+            }
           </div>
         `;
         allEmojis.appendChild(container);

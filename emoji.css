@@ -21,9 +21,12 @@ input {
 
   --duration-intensifies: 0.25s;
   --direction-intensifies: normal;
+
+  --duration-conga: 1.5s;
+  --direction-conga: normal;
 }
 
-.party {
+.party1 {
   animation: var(--duration-party) infinite var(--direction-party) party;
   animation-timing-function: linear;
 }
@@ -40,7 +43,7 @@ input {
   }
 }
 
-.jam {
+.jam1 {
   animation: var(--duration-jam) infinite var(--direction-jam) jam;
   animation-timing-function: linear;
 }
@@ -75,7 +78,7 @@ input {
   }
 }
 
-.intensifies {
+.intensifies1 {
   animation: var(--duration-intensifies) infinite var(--direction-intensifies) intensifies;
   animation-timing-function: linear;
 }
@@ -110,5 +113,52 @@ input {
   }
   90% {
     transform: translate(-1%, -5%);
+  }
+}
+
+.conga1 {
+  animation: var(--duration-conga) infinite var(--direction-conga) conga;
+  animation-timing-function: ease-in-out;
+}
+
+.conga2 {
+  animation: var(--duration-conga) infinite var(--direction-conga) conga;
+  animation-timing-function: ease-in-out;
+  animation-delay: calc(1 * var(--duration-conga));
+}
+
+.conga3 {
+  animation: var(--duration-conga) infinite var(--direction-conga) conga;
+  animation-timing-function: ease-in-out;
+  animation-delay: calc(2 * var(--duration-conga));
+}
+
+.conga4 {
+  animation: var(--duration-conga) infinite var(--direction-conga) conga;
+  animation-timing-function: ease-in-out;
+  animation-delay: calc(3 * var(--duration-conga));
+}
+
+@keyframes conga {
+  0% {
+    transform: translate(-100%, 0%);
+  }
+  20% {
+    transform: translate(-40%, 0%);
+  }
+  30% {
+    transform: translate(-60%, 0%);
+  }
+  50% {
+    transform: translate(0%, 0%);
+  }
+  70% {
+    transform: translate(60%, 0%);
+  }
+  80% {
+    transform: translate(40%, 0%);
+  }
+  100% {
+    transform: translate(100%, 0%);
   }
 }
