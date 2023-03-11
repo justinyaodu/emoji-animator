@@ -47,9 +47,11 @@
 
       const emojiTypes = ["party", "jam", "intensifies"];
       for (const emojiType of emojiTypes) {
+        const duration = getComputedStyle(document.documentElement).getPropertyValue(`--duration-${emojiType}`);
+
         const container = document.createElement("div");
         container.innerHTML = `
-          <a id="${emojiType}" href="#${emojiType}">${emojiType}</a>
+          <p><a id="${emojiType}" href="#${emojiType}">${emojiType}</a> (${duration})</p>
           <div class="emoji-container">
             <div class="${emojiType}">
               <div class="emoji"></div>

@@ -12,8 +12,14 @@ input {
   align-items: center;
 }
 
+:root {
+  --duration-party: 1.5s;
+  --duration-jam: 2s;
+  --duration-intensifies: 0.25s;
+}
+
 .party {
-  animation: 1.5s infinite normal party;
+  animation: var(--duration-party) infinite normal party;
   animation-timing-function: linear;
 }
 
@@ -30,7 +36,7 @@ input {
 }
 
 .jam {
-  animation: 2s infinite alternate jam;
+  animation: var(--duration-jam) infinite alternate jam;
   animation-timing-function: linear;
 }
 
@@ -65,7 +71,7 @@ input {
 }
 
 .intensifies {
-  animation: 0.25s infinite alternate intensifies;
+  animation: var(--duration-intensifies) infinite normal intensifies;
   animation-timing-function: linear;
 }
 
