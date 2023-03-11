@@ -1,0 +1,47 @@
+/* Reset. */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+body {
+  line-height: 1.5;
+}
+
+/* Page styles. */
+
+* {
+  overflow-wrap: break-word;
+}
+
+:root {
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+body {
+  padding: 2rem;
+  max-width: 50rem;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+}
+
+body > * + * {
+  margin-top: 0.5rem;
+}

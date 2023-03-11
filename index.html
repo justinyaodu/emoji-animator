@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Emoji Animator</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="emoji.css">
+    <style id="generated-styles"></style>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label>
+          Emoji:
+          <div>
+            <input type="text" id="emoji-picker">
+          </div>
+        </label>
+      </div>
+      <div>
+        <label>
+          Scaling (percent):
+          <div>
+            <input type="number" id="emoji-scale" step="any" min="0" value="75">
+          </div>
+        </label>
+      </div>
+      <div>
+        <label>
+          Rotation (degrees):
+          <div>
+            <input type="number" id="emoji-rotate" step="any" min="0" max="360" value="0">
+          </div>
+        </label>
+      </div>
+    </form>
+    <div id="all-emojis"></div>
+    <p>
+      I haven't found a great way to create GIFs in the browser. For now, you'll have to make a screen recording of the emoji you want, then convert it to a GIF (perhaps using FFmpeg and <a href="https://github.com/justinyaodu/emoji-animator/blob/main/video-to-gif.sh">this script</a>).
+    </p>
+    <p>
+      Check out the source code on <a href="https://github.com/justinyaodu/emoji-animator">GitHub</a>!
+    </p>
+    <script>
+      const allEmojis = document.getElementById("all-emojis");
+
+      const emojiTypes = ["party", "jam", "intensifies"];
+      for (const emojiType of emojiTypes) {
+        const container = document.createElement("div");
+        container.innerHTML = `
+          <a id="${emojiType}" href="#${emojiType}">${emojiType}</a>
+          <div class="emoji-container">
+            <div class="${emojiType}">
+              <div class="emoji"></div>
+            </div>
+          </div>
+        `;
+        allEmojis.appendChild(container);
+      }
+
+      const emojiPicker = document.getElementById("emoji-picker");
+      emojiPicker.addEventListener("input", (e) => {
+        document.querySelectorAll(".emoji").forEach((emoji) => {
+          emoji.innerText = e.target.value;
+        });
+      });
+
+      emojiPicker.value = "🤖";
+      emojiPicker.dispatchEvent(new Event("input", { bubbles: true }));
+
+      const emojiScale = document.getElementById("emoji-scale");
+      const emojiRotate = document.getElementById("emoji-rotate");
+
+      const generatedStyles = document.getElementById("generated-styles");
+      const emojiTransformListener = () => {
+        let scale = parseFloat(emojiScale.value, 10);
+        if (Number.isNaN(scale)) {
+          scale = 100;
+        }
+
+        let rotation = parseFloat(emojiRotate.value, 10);
+        if (Number.isNaN(rotation)) {
+          rotation = 0;
+        }
+
+        generatedStyles.innerHTML = `
+          .emoji {
+            font-size: ${scale / 100}em;
+            transform: rotate(${rotation}deg);
+          }
+        `;
+      }
+
+      emojiScale.addEventListener("input", emojiTransformListener);
+      emojiRotate.addEventListener("input", emojiTransformListener);
+
+      emojiScale.dispatchEvent(new Event("input", { bubbles: true }));
+    </script>
+  </body>
+</html>
