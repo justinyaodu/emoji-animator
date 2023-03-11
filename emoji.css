@@ -16,6 +16,12 @@ input {
   --duration-party: 1.5s;
   --direction-party: normal;
 
+  --duration-rainbow: 1s;
+  --direction-rainbow: normal;
+
+  --duration-spin: 1s;
+  --direction-spin: normal;
+
   --duration-jam: 2s;
   --direction-jam: alternate;
 
@@ -39,6 +45,36 @@ input {
 
   to {
     filter: hue-rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.rainbow1 {
+  animation: var(--duration-rainbow) infinite var(--direction-rainbow) rainbow;
+  animation-timing-function: linear;
+}
+
+@keyframes rainbow {
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.spin1 {
+  animation: var(--duration-spin) infinite var(--direction-spin) spin;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
     transform: rotate(360deg);
   }
 }
@@ -124,19 +160,19 @@ input {
 .conga2 {
   animation: var(--duration-conga) infinite var(--direction-conga) conga;
   animation-timing-function: ease-in-out;
-  animation-delay: calc(1 * var(--duration-conga));
+  animation-delay: calc(-1 * var(--duration-conga));
 }
 
 .conga3 {
   animation: var(--duration-conga) infinite var(--direction-conga) conga;
   animation-timing-function: ease-in-out;
-  animation-delay: calc(2 * var(--duration-conga));
+  animation-delay: calc(-2 * var(--duration-conga));
 }
 
 .conga4 {
   animation: var(--duration-conga) infinite var(--direction-conga) conga;
   animation-timing-function: ease-in-out;
-  animation-delay: calc(3 * var(--duration-conga));
+  animation-delay: calc(-3 * var(--duration-conga));
 }
 
 @keyframes conga {
